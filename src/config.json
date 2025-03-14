@@ -4,13 +4,45 @@
     "dataset": "prix-des-carburants-en-france-flux-instantane-v2",
     "fichier_cible": "../data/prix_instantane_carburant.json",
     "fichier_sql": "prix_instantane_carburant.sql",
-    "nom_table" : "prix_instante_raw"
+    "nom_table" : "prix_instante_raw",
+    "select": [
+      "id",
+      "latitude",
+      "longitude",
+      "cp",
+      "adresse",
+      "ville",
+      "services",
+      "gazole_prix",
+      "gazole_maj",
+      "horaires",
+      "sp95_maj",
+      "sp95_prix",
+      "sp98_maj",
+      "sp98_prix"
+    ]
   },
   {
     "type_api": "data_gouv",
     "dataset": "cfc27ff9-1871-4ee8-be64-b9a290c06935",
     "fichier_cible": "../data/consommation_brute_quaotidienne_gaz_elec.json",
     "fichier_sql": "consommation_brute_quotidienne_gaz_elec.sql",
-    "nom_table" : "consommation_brute_quotidienne_gaz_elec_raw"
+    "nom_table" : "consommation_brute_quotidienne_gaz_elec_raw",
+    "select": [
+      "id",
+      "latitude",
+      "longitude",
+      "cp",
+      "adresse",
+      "ville",
+      "services",
+      "gazole_prix",
+      "gazole_maj",
+      "horaires",
+      "sp95_maj",
+      "sp95_prix",
+      "sp98_maj",
+      "sp98_prix"
+    ]
   }
 ]
