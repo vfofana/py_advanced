@@ -2,6 +2,7 @@ from pydantic.dataclasses import dataclass
 from time import sleep
 import requests
 from requests import HTTPError
+from typing import List
 
 
 def requests_get(url:str, max_retries:int=3) -> requests.Response:
@@ -51,7 +52,7 @@ class EconomieGouvConfiguration:
             return f"https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/{self.dataset}/records?limit={{step}}&offset={{offset}}"
 
 
-    def telecharger(self) -> list:
+    def telecharger(self) -> list[dict]:
         step = 100
         offset = 0
         toutes_les_data = []
@@ -81,7 +82,7 @@ class DataGouvConfiguration:
     def url(self) -> str:
         return f"https://tabular-api.data.gouv.fr/api/resources/{self.dataset}/data/?Date__exact='2024-10-31'"
 
-    def telecharger(self) -> list:
+    def telecharger(self) -> list[dict]:
         toutes_les_data = []
         url = self.url
         print("Télécharger les données data gouv")
