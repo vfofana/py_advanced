@@ -1,7 +1,7 @@
 import duckdb
 
 
-def stocker_dans_bdd(sql, fichier, bdd, nom_table):
+def stocker_dans_bdd(sql:str, fichier:str, bdd:str, nom_table:str) -> None:
     print("Chargement dans la BDD")
     with duckdb.connect(bdd) as connection:
         connection.sql(sql)
