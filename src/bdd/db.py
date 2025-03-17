@@ -7,3 +7,4 @@ def stocker_dans_bdd(sql, fichier, bdd, nom_table):
     connection.sql(sql)
     connection.sql(f'INSERT INTO {nom_table} '
                    f'SELECT * FROM read_json_auto("{fichier}")')
+    connection.close()
