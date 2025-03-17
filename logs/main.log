@@ -1,0 +1,15 @@
+2025-03-16 14:28:30,862 - main_pipeline - INFO - lecture configuration
+2025-03-16 14:28:30,862 - lecteur_config - INFO - Lecture du fichier config.json
+2025-03-16 14:28:31,268 - lecteur_config - DEBUG - Chargement du SQL depuis prix_instantane_carburant.sql
+2025-03-16 14:28:31,276 - lecteur_config - DEBUG - Trouvé config pour API EconomieGouv
+2025-03-16 14:28:31,279 - lecteur_config - DEBUG - Chargement du SQL depuis consommation_brute_quotidienne_gaz_elec.sql
+2025-03-16 14:28:31,409 - lecteur_config - DEBUG - Trouvé config pour API DataGouv
+2025-03-16 14:28:31,410 - main_pipeline - INFO - Telechargement et stockage
+2025-03-16 14:28:31,410 - main_pipeline - DEBUG - Telechargement de economie_gouv, dataset prix-des-carburants-en-france-flux-instantane-v2
+2025-03-16 14:28:44,013 - main_pipeline - DEBUG - Reçu 10000 lignes
+2025-03-16 14:28:44,013 - main_pipeline - DEBUG - Stockage dans le fichier ../data/prix_instantane_carburant.json
+2025-03-16 14:28:44,485 - main_pipeline - DEBUG - Stockage dans la BDD
+2025-03-16 14:28:47,178 - main_pipeline - DEBUG - Telechargement de data_gouv, dataset cfc27ff9-1871-4ee8-be64-b9a290c06935
+2025-03-16 14:28:48,105 - main_pipeline - DEBUG - Reçu 48 lignes
+2025-03-16 14:28:48,106 - main_pipeline - DEBUG - Stockage dans le fichier ../data/consommation_brute_quaotidienne_gaz_elec.json
+2025-03-16 14:28:48,113 - main_pipeline - DEBUG - Stockage dans la BDD
