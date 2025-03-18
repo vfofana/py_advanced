@@ -11,7 +11,7 @@ logger_lecteur_config = setup_advanced_logging("lecteur_config", "../logs/main.l
 
 def main():
     logger_main.info("lecture configuration")
-    configuration = lire_configuration(logger_lecteur_config)
+    configuration = lire_configuration("config.json",logger_lecteur_config)
 
     logger_main.info("Telechargement et stockage")
     for config in configuration:

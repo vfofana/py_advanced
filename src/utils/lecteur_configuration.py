@@ -6,16 +6,16 @@ from src.configuration import EconomieGouvConfiguration, DataGouvConfiguration
 
 t= typing.List[typing.Union[EconomieGouvConfiguration,DataGouvConfiguration]]
 
-def lire_configuration(logger:logging.Logger) -> t:
+def lire_configuration(fichier_config,logger:logging.Logger) -> t:
     out = []
 
     logger.info("Lecture du fichier config.json")
-    with open("config.json", "r") as f:
+    with open(fichier_config, "r") as f:
         configuration = json.load(f)
 
     for config in configuration:
         logger.debug(f"Chargement du SQL depuis {config['fichier_sql']}")
-        config["sql_creation"] = retrouver_sql(config["fichier_sql"])
+        config["sql_creation"] = retrouver_sql(f'{config["fichier_sql"]}')
 
         if config["type_api"] == "economie_gouv":
             logger.debug("Trouvé config pour API EconomieGouv")
@@ -32,7 +32,7 @@ def lire_configuration(logger:logging.Logger) -> t:
     return out
 
 
-def retrouver_sql(nom_fichier:str) -> str:
-    with open(f"sql/{nom_fichier}", "r") as f:
+def retrouver_sql(chemin_fichier:str) -> str:
+    with open(chemin_fichier, "r") as f:
         return f.read()
 
