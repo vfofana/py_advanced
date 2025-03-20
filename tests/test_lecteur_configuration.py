@@ -55,3 +55,10 @@ def test_lire_configuration(nom_fichier, resultat, expectation):
     with expectation:
         out = lire_configuration(nom_fichier, logging.getLogger("name"))
         assert out == resultat
+
+def test_retrouver_sql_2(fichier_non_existant):
+    with pytest.raises(FileNotFoundError):
+        retrouver_sql(fichier_non_existant)
+
+def test_lire_configuration_2(economie_gouv_fixture, logger_fixture):
+    assert lire_configuration("fixtures/economie_gouv.json", logger_fixture) ==economie_gouv_fixture
