@@ -5,7 +5,7 @@ from requests import HTTPError
 from typing import List
 
 
-def requests_get(url:str, max_retries:int=3) -> requests.Response:
+def requests_get(url:str, max_retries:int=3) -> requests.Response: 
     error_count = 0
     http_error_count = 0
 
