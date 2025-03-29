@@ -86,8 +86,8 @@ def select_fixture():
 
 @pytest.fixture
 def test_db():
-    os.unlink("random_db.db")
     yield duckdb.connect("random_db.db")
+    os.unlink("random_db.db")
 
 
 
