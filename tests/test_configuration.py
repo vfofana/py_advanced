@@ -1,9 +1,10 @@
 from contextlib import nullcontext as does_not_raise
-
+from unittest.mock import patch
+import requests
 import pytest
 from pydantic import ValidationError
 
-from configuration import EconomieGouvConfiguration, DataGouvConfiguration
+from configuration import EconomieGouvConfiguration, DataGouvConfiguration, requests_get
 
 
 @pytest.mark.parametrize(
@@ -31,3 +32,23 @@ def test_data_gouv_configuration(input_data_gouv_fixture):
     url = "https://tabular-api.data.gouv.fr/api/resources/dataset/data/?Date__exact='2024-10-31'"
     assert data_gouv_cfg.url == url, f"L'URL {data_gouv_cfg.url} ne matche pas nos attentes"
 
+@pytest.mark.parametrize(
+    "exception",
+    [
+        requests.exceptions.ConnectionError,
+        None
+    ]
+)
+def test_requests_get(requests_mock, exception):
+    url = "http://www.test.com"
+    if exception:
+        requests_mock.get(url, exc=exception)
+        with pytest.raises(exception), patch(
+        "configuration.sleep",
+        return_value=None,
+    ):
+            requests_get(url)
+    else:
+        requests_mock.get(url, json={"a": 1})
+        r = requests_get(url)
+        assert r.json() == {"a": 1}
