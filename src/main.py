@@ -9,7 +9,7 @@ fichier_base_de_donnees = "../data/bdd_cours_python_avance"
 logger_main = setup_advanced_logging("main_pipeline", "../logs/main.log")
 logger_lecteur_config = setup_advanced_logging("lecteur_config", "../logs/main.log")
 
-if __name__ == "__main__":
+def main():
     logger_main.info("lecture configuration")
     configuration = lire_configuration(logger_lecteur_config)
 
@@ -24,4 +24,7 @@ if __name__ == "__main__":
         stocker_fichier(resultat, config.fichier_cible)
 
         logger_main.debug("Stockage dans la BDD")
-        stocker_dans_bdd(config.sql_creation, config.fichier_cible, fichier_base_de_donnees,config.nom_table)
+        stocker_dans_bdd(config.sql_creation, config.fichier_cible, fichier_base_de_donnees, config.nom_table)
+
+if __name__ == "__main__":
+    main()
