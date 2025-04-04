@@ -93,8 +93,6 @@ def test_db():
         conn.close()
         os.unlink("random_db.db")
 
-
-
 @pytest.fixture
 def dataset_correct_fixture():
     return {
