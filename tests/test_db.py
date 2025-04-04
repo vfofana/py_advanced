@@ -9,7 +9,7 @@ from bdd.db import stocker_dans_bdd
     "input_fixture, expectation",
     [
         ("dataset_correct_fixture", does_not_raise()),
-        #("dataset_fichier_inexistant_fixture", pytest.raises(IOException))
+        ("dataset_fichier_inexistant_fixture", pytest.raises(IOException))
     ]
 )
 def test_stocker_dans_bdd(request, test_db, input_fixture, expectation):
