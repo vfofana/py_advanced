@@ -86,8 +86,12 @@ def select_fixture():
 
 @pytest.fixture
 def test_db():
-    yield duckdb.connect("random_db.db")
-    os.unlink("random_db.db")
+    conn = duckdb.connect("random_db.db")
+    try:
+        yield conn
+    finally:
+        conn.close()
+        os.unlink("random_db.db")
 
 
 
@@ -111,3 +115,16 @@ def dataset_fichier_inexistant_fixture():
         "nom_table": "table_test",
         "expected": [(1,), (2,)]
     }
+
+@pytest.fixture
+def input_incorrect_json_dump():
+    return [{1, 2}]
+
+@pytest.fixture
+def test_fichier():
+    yield "fichier_temp"
+    os.unlink("fichier_temp")
+
+@pytest.fixture
+def input_correct_json():
+    return [{"a": 1}, {"a": 2}]
