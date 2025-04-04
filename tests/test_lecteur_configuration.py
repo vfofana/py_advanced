@@ -3,8 +3,7 @@ from json import JSONDecodeError
 from contextlib import contextmanager
 import pytest
 
-from src.configuration import EconomieGouvConfiguration, DataGouvConfiguration
-from src.utils.lecteur_configuration import retrouver_sql, lire_configuration
+from utils.lecteur_configuration import retrouver_sql, lire_configuration
 
 @contextmanager
 def does_not_raise():

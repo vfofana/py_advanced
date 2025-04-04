@@ -1,6 +1,6 @@
 import pytest
 import logging
-from src.configuration import EconomieGouvConfiguration, DataGouvConfiguration
+from configuration import EconomieGouvConfiguration, DataGouvConfiguration
 
 @pytest.fixture
 def logger_fixture():
