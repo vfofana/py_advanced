@@ -1,4 +1,6 @@
 import pytest
+import duckdb
+import os
 import logging
 from configuration import EconomieGouvConfiguration, DataGouvConfiguration
 
@@ -80,3 +82,34 @@ def empty_list_fixture():
 @pytest.fixture
 def select_fixture():
     return 'SELECT'
+
+
+@pytest.fixture
+def test_db():
+    conn = duckdb.connect("random_db.db")
+    try:
+        yield conn
+    finally:
+        conn.close()
+        os.unlink("random_db.db")
+
+@pytest.fixture
+def dataset_correct_fixture():
+    return {
+        "sql": "CREATE TABLE IF NOT EXISTS table_test (col1 INT)",
+        "fichier": "fixtures/donnees_tests.json",
+        "bdd": "random_db.db",
+        "nom_table": "table_test",
+        "expected": [(1,), (2,)]
+    }
+
+
+@pytest.fixture
+def dataset_fichier_inexistant_fixture():
+    return {
+        "sql": "CREATE TABLE IF NOT EXISTS table_test (col1 INT)",
+        "fichier": "donnees_tests.json",
+        "bdd": "random_db.db",
+        "nom_table": "table_test",
+        "expected": [(1,), (2,)]
+    }
