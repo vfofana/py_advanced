@@ -86,10 +86,12 @@ def select_fixture():
 
 @pytest.fixture
 def test_db():
-    os.unlink("random_db.db")
-    yield duckdb.connect("random_db.db")
-
-
+    conn = duckdb.connect("random_db.db")
+    try:
+        yield conn
+    finally:
+        conn.close()
+        os.unlink("random_db.db")
 
 @pytest.fixture
 def dataset_correct_fixture():
