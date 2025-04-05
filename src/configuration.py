@@ -4,7 +4,8 @@ import requests
 from requests import HTTPError
 from typing import List
 
-def requests_get(url:str, max_retries:int=3) -> requests.Response: # pragma: no cover
+
+def requests_get(url: str, max_retries: int = 3) -> requests.Response:  # pragma: no cover
     error_count = 0
     http_error_count = 0
 
@@ -30,15 +31,16 @@ def requests_get(url:str, max_retries:int=3) -> requests.Response: # pragma: no 
                 continue
     return r
 
+
 @dataclass
 class EconomieGouvConfiguration:
-    type_api:str
-    dataset:str
-    fichier_cible:str
-    fichier_sql:str
-    nom_table:str
-    sql_creation :str
-    select:list
+    type_api: str
+    dataset: str
+    fichier_cible: str
+    fichier_sql: str
+    nom_table: str
+    sql_creation: str
+    select: list
 
     @property
     def url(self) -> str:
@@ -48,8 +50,7 @@ class EconomieGouvConfiguration:
         else:
             return f"https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/{self.dataset}/records?limit={{step}}&offset={{offset}}"
 
-
-    def telecharger(self) -> list[dict]: # pragma: no cover
+    def telecharger(self) -> list[dict]:  # pragma: no cover
         step = 100
         offset = 0
         toutes_les_data = []
@@ -66,6 +67,7 @@ class EconomieGouvConfiguration:
                 break
         return toutes_les_data
 
+
 @dataclass
 class DataGouvConfiguration:
     type_api: str
@@ -75,12 +77,11 @@ class DataGouvConfiguration:
     nom_table: str
     sql_creation: str
 
-
     @property
     def url(self) -> str:
         return f"https://tabular-api.data.gouv.fr/api/resources/{self.dataset}/data/?Date__exact='2024-10-31'"
 
-    def telecharger(self) -> list[dict]: # pragma: no cover
+    def telecharger(self) -> list[dict]:  # pragma: no cover
         toutes_les_data = []
         url = self.url
         print("Télécharger les données data gouv")
